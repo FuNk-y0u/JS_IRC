@@ -1,0 +1,49 @@
+<html>
+    <head>
+    <script>
+
+        const socket = new WebSocket(`ws://${localStorage.getItem("group_id")}`);
+        socket.onopen = function(event){
+            console.log("CONNECTED");
+        }
+
+        socket.onmessage= function(event) {
+            console.log(event.data);
+            document.getElementById("messages").innerHTML += `<p>${event.data}</p>`;
+        }
+
+        socket.onclose = function(event) {
+            console.log("DISCONNECTED");
+        }
+
+        socket.onerror = function(event) {
+            console.log("ERROR");
+        }
+
+        function send_message() {
+            let message_data = document.getElementById("message").value;
+            let message = `${localStorage.getItem("user_name")}: ${message_data}`;
+            socket.send(message);
+
+        }
+        window.onload = async () => {
+            console.log("HELLO");
+            let data = await fetch("http://localhost:3000/sv_name");
+            data = await data.json();
+            document.getElementById("server_name").innerHTML = data.name;
+           
+            
+        };
+
+    </script>
+    </head>
+    <body>
+    <h1 id="server_name"></h1>
+    <div id="messages">
+    </div>
+    <input type="text" id="message">
+    <button onclick="send_message()">
+       send 
+    </button>
+    </body>
+</html>

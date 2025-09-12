@@ -1,0 +1,20 @@
+<html>
+    <script>
+        function set_data() {
+            let user_name = document.getElementById("user_name").value;
+            let server_ip = document.getElementById("group_id").value;
+            localStorage.setItem("user_name", user_name);
+            localStorage.setItem("group_id", server_ip);
+            window.location = "/dashboard";
+        }
+    </script>
+    <h1> Chat App</h1>
+
+    <label for="user_name">Username: </label>
+    <input type="text" id="user_name" name="user_name" >
+
+    <label for="group_id">Server Ip: </label>
+    <input type="text" id="group_id" name="group_id" >
+    <button onclick="set_data()">Submit</button>
+
+</html>
