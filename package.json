@@ -2,11 +2,10 @@
   "name": "internship_project",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "server": "nodemon server.js",
-    "client": "node client.js"
+    "server": "nodemon index.js"
   },
+  "type": "commonjs",
   "author": "",
   "license": "ISC",
   "dependencies": {
