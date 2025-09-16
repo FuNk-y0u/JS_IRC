@@ -1,3 +1,5 @@
-module.export =  function dashboard(res, req) {
-    res.sendFile('/public/dashboard.html');
+const path = require('path');
+
+module.exports =  function dashboard(req, res) {
+    res.sendFile(path.join(__dirname, "..", "public", "dashboard.html"));
 }

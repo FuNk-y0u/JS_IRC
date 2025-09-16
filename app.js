@@ -4,4 +4,4 @@ const {WebSocketServer} = require('ws');
 
 const app = express();
 
-module.export  = app;
+module.exports = app;

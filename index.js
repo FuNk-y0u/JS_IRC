@@ -13,12 +13,13 @@ const on_close = require('./ws_views/on_close.js');
 
 // Creating HTTP server
 app.use(express.static('public'));
+
 app.get("/", index);
 app.get("/dashboard", dashboard);
 app.get("/sv_name", sv_name);
-
 // Creating socket server
-wss = create_wss_server(app);
+//
+var [wss, server] = create_ws_server(app);
 
 var ws_context = {
     connections: []
@@ -28,12 +29,12 @@ wss.on("connection", (connection) => {
 
     socket_init(connection, ws_context);
 
-    ws.on("message", (data) => {
+    connection.on("message", (data) => {
         on_message(data, ws_context);
     });
     
-    ws.on("close", () => {
-        on_close(data, ws_context);
+    connection.on("close", () => {
+        on_close(connection, ws_context);
     });
 });
 
